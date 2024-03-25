@@ -9,10 +9,11 @@ recognizer = sr.recognizer()
 
 while True:
     try:
-        with sr.Microphone() as source:
-            recognizer.adjust_for_ambient_noise(source)
-            audio = recognizer.listen(source)
+        with sr.Microphone() as mic:
+            recognizer.adjust_for_ambient_noise(mic,duration=0.2)
+            audio = recognizer.listen(mic)
             text = recognizer.recognize_google(audio)
-            print(text)
-    except:
-        pass
+            text = text.lower()
+            print(f'Recognized:{text}')
+    except speech_recognition.UnknownValueError:
+        recognisation = 
